@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include <stdbool.h>
 
-int askQuestion(char* question) {
+bool askQuestion(char* question) {
     char response;
     printf("%s", question);
     fflush(stdin);
@@ -10,7 +11,9 @@ int askQuestion(char* question) {
 
 int main() {
     if(askQuestion("Do we eat it normally?")) {
-        if(askQuestion("Does it live in the sea?")) {
+        bool isSeaCreature = askQuestion("Does it live in the sea?");
+        bool isMammal = askQuestion("Is it a mammal");
+        if(isSeaCreature && isMammal) {
 
         } else {
 
