@@ -5,21 +5,21 @@
 int main() {
     srand(time(NULL)); // Seeds randomness using current datetime.
     fflush(stdin);
-    int randomNumber = rand() % 10 + 1;
-    int userGuess;
+    int randomNumber = rand() % 10 + 1, userGuess = 0, guessCount = 0;
 
     printf("DEBUG: %d\n", randomNumber);
 
-    while(randomNumber != userGuess) {
-        printf("Enter a guess from 1-10 inclusive:");
+    while(randomNumber != userGuess && guessCount < 5) {
+        printf("\nEnter a guess from 1-10 inclusive:");
         scanf("%d", &userGuess);
 
-        int diff = randomNumber - userGuess;
-        if(diff == 0) printf("You were correct!");
-        else if (diff * diff == 1) printf("You were very close!");
-        else printf("You were wrong :(");
+        if(userGuess > randomNumber) printf("\nGuess of %d was too high!", userGuess);
+        else if(userGuess < randomNumber) printf("\nGuess of %d was too low!", userGuess);
+        ++guessCount;
     }
 
-    printf("\n The number was %d", randomNumber);
+    if(guessCount == 5) printf("\nYou used up all 5 guesses!");
+    else printf("\nYou win!");
+    printf("\nThe number was %d", randomNumber);
     return 0;
 }
