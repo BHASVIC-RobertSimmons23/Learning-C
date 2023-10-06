@@ -14,7 +14,7 @@ int main() {
     double calculatedTax = calculateTax(grossSalary);
     double calculatedNIPerWeek = calculateNI(grossSalary);
     double calculatedNI = calculatedNIPerWeek * 52;
-    double netSalary = grossSalary - calculatedTax - calculatedNI16;
+    double netSalary = grossSalary - calculatedTax - calculatedNI;
     printf("\nGross Salary: %f\nTax Paid: %f\nNI Paid: %f\nNet Salary: %f", grossSalary, calculatedTax, calculatedNI, netSalary);
     return 0;
 }
