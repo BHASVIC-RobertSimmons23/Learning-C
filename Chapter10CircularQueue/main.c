@@ -44,6 +44,7 @@ void enqueue(){
     } while (formatCheck == 0);
     Q[rear] = newElement;
     ++rear; ++inQ;
+    if(rear == 10) rear = 0;
 }
 
 void dequeue(){
@@ -52,7 +53,6 @@ void dequeue(){
         return;
     }
     Q[front] = 0;
-    ++front;
-	//check for underflow
-
+    ++front; --inQ;
+    if(front == 10) front = 0;
 }
