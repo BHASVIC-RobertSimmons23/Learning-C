@@ -18,7 +18,8 @@ int main() {
         printf("\nYou rolled: %d, %d, %d\n", nums[0], nums[1], nums[2]);
         float winnings = calculateWinnings(nums, credit);
         credit += winnings;
-        printf("\nYou now have %f credits!", credit);
+        printf("\nYou now have %f"
+               " credits!", credit);
         keepGoing = false;
         if (credit >= 0.2f) {
             char userInput;

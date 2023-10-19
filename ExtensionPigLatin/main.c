@@ -13,17 +13,27 @@ int main() {
 
     bool vowelReached = false;
     char newString[100] = "";
-    unsigned int length = strlen(userInput);
+    unsigned int length = strlen(userInput), bufferLength = 0, newLength = 0;
+    char endBuffer[100] = "";
     for(int i = 0; i < 100; ++i) {
         unsigned char currentChar = tolower(userInput[i]);
         if(!isVowel(currentChar)  && !vowelReached) {
-            newString[length] = userInput[i];
-            ++length;
-        } else vowelReached = true;
+            endBuffer[bufferLength] = userInput[i];
+            ++bufferLength;
+        } else if(isalpha(currentChar) != 0) {
+            newString[newLength] = userInput[i];
+            newLength++;
+            vowelReached = true;
+        }
     }
 
-    newString[length] = 'a';
-    newString[length + 1] = 'y';
+    for(unsigned int i = newLength, j = 0; i < newLength + bufferLength && j < bufferLength; ++i, ++j) {
+        newString[i] = endBuffer[j];
+    }
+
+    newLength += bufferLength;
+    newString[newLength++] = 'a';
+    newString[newLength] = 'y';
     printf("\n");
     puts(newString);
 
