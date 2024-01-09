@@ -1,46 +1,30 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
-void push(int val);
-int pop();
-void printStack();
-
-
-int stack[10]={}, top=0;
-//line 11 works out the size of my array by dividing the array
-//reserved memory by the data type it finds in the first index
-int stackSize = sizeof(stack) / sizeof(stack[0]);
+void push(int val, int* stack, int size, int top);
+int pop(int* stack, int top);
+void printStack(int* stack, int size);
 
 int main(){
-    int choice=0;
-    int error = 0;
-    int val = 0;
-    do{
-        printStack();
-        printf("\nDo you want to push(1), pop(2) or quit(3)?: ");
-        error = scanf("%d",&choice);
-        if (choice==1){
-            printf ("What value do you want to push?\n");
-            scanf("%d",&val);
-            push(val);
-        } else if (choice==2){
-            val = pop();
-            printf ("popped value was = %d", val);
-        }
-        else if (choice==3) break;
-        else printf("Enter a valid choice.");
-    }while (choice!=3 || error == 0);
+    int stackASize, stackBSize, noGames, maxSum;
+    scanf("%d", &noGames);
+    scanf("%d %d %d", &stackASize, &stackBSize, &maxSum);
+    char* aString, bString;
+    gets(aString)
+    int stackA[stackASize]={}, stackB[stackBSize]={}, topA=0, topB;
+
     return 0;
 }
 
-void printStack() {
-    for(int i = stackSize - 1; i >= 0; --i) {
+void printStack(int* stack, int size) {
+    for(int i = size - 1; i >= 0; --i) {
         printf("\n%d | %d", i, stack[i]);
     }
 }
 
-void push(int val) {
-    if(stackSize == top) {
+void push(int val, int* stack, int size, int top) {
+    if(size == top) {
         printf("Stack is full!!!");
         return;
     }
@@ -48,7 +32,7 @@ void push(int val) {
     ++top;
 }
 
-int pop() {
+int pop(int* stack, int top) {
     if (top == 0) {
         printf("Stack is empty!!!");
         return -1;
