@@ -5,7 +5,7 @@
 
 void printArray(int* array, int length);
 void bubbleSort(int* array, int length, bool verbose);
-void quickSort(int* array, int length);
+void quickSort(int* array, int start, int end);
 void insertionSort(int* array, int length, bool verbose);
 void mergeArrays(const int* left, int lenLeft, const int* right, int lenRight, int* output);
 void mergeSort(const int* array, int length, int* output);
@@ -21,14 +21,17 @@ int main() {
         numArray2[i] = random;
     }
     printArray(numArray1, arrayLength);
-    int output[arrayLength];
-    mergeSort(numArray1, arrayLength, output);
-    printf("\n");
-    printArray(output, arrayLength);
+
+    //int output[arrayLength];
+    //mergeSort(numArray1, arrayLength, output);
+    //printf("\n");
+    //printArray(output, arrayLength);
+
+    quickSort(numArray1, 0, arrayLength - 1);
     //insertionSort(numArray1, arrayLength, false);
     //bubbleSort(numArray2, arrayLength, false);
     printf("\n\n");
-    //printArray(numArray, arrayLength);
+    printArray(numArray1, arrayLength);
     return 0;
 }
 
@@ -148,7 +151,28 @@ void mergeArrays(const int* left, int lenLeft, const int* right, int lenRight, i
     }
 }
 
-void quickSort(int* array, int length) {
-    int high = array[length - 1];
-    int pivot = array[length - 1];
+
+void quickSort(int* array, int start, int end) {
+    if(start >= end) return;
+
+    int pivot = array[start];
+    int low = start + 1;
+    int high = end;
+    bool finished = false;
+
+    while(!finished) {
+        while(low <= high && array[low] <= pivot) low++;
+        while(low <= high && array[high] >= pivot) high--;
+
+        if(low <= high) {
+            int temp = array[low];
+            array[low] = array[high];
+            array[high] = temp;
+        } else finished = true;
+    }
+
+    array[start] = array[high];
+    array[high] = pivot;
+    quickSort(array, start, high - 1);
+    quickSort(array, high + 1, end);
 }
