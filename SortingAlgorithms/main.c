@@ -11,7 +11,7 @@ void mergeArrays(const int* left, int lenLeft, const int* right, int lenRight, i
 void mergeSort(const int* array, int length, int* output);
 
 int main() {
-    int arrayLength = 100;
+    int arrayLength = 10000;
     int numArray1[arrayLength];
     int numArray2[arrayLength];
     srand(time(NULL));
